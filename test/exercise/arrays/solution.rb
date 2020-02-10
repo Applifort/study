@@ -16,8 +16,6 @@ module Exercise
           middle = (query[:first] + query[:last]) / 2
           return middle if query[:searching_element] == array[middle]
           case array[middle] - query[:searching_element]
-          when ->(x) { x == 0 }
-            middle
           when ->(x) { x <= 0 }
             query[:first] = middle + 1
             search(array, query)
