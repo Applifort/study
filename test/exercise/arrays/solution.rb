@@ -12,22 +12,21 @@ module Exercise
 
       def search(array, query)
         query = Hash[:first, 0, :last, array.length - 1, :searching_element, query] unless query.class == Hash
-        return -1 if array.empty?
-        if query[:first] == query[:last]
-          return query[:searching_element] == array[query[:last]] ? query[:last] : -1
-        end
-        middle_index = (query[:first] + query[:last]) / 2
-        middle_element = array[middle_index]
-        check = middle_element - query[:searching_element]
-        case check
-        when ->(x) { x == 0 }
-          middle_index
-        when ->(x) { x < 0 }
-          query[:first] = middle_index + 1
-          search(array, query)
-        when ->(x) { x > 0 }
-          query[:last] = middle_index - 1
-          search(array, query)
+        if query[:first] <= query[:last]
+          middle = (query[:first] + query[:last]) / 2
+          return middle if query[:searching_element] == array[middle]
+          case array[middle] - query[:searching_element]
+          when ->(x) { x == 0 }
+            middle
+          when ->(x) { x <= 0 }
+            query[:first] = middle + 1
+            search(array, query)
+          when ->(x) { x > 0 }
+            query[:last] = middle - 1
+            search(array, query)
+          end
+        else
+          -1
         end
       end
     end
