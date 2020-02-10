@@ -7,13 +7,7 @@ module Exercise
       end
 
       def max(array)
-        max = array.last
-        index = 1
-        while index < array.length
-          max = array[index] if array[index] > max
-          index += 1
-        end
-        max
+        array.reduce(array.first) { |a, e| e > a ? e : a }
       end
 
       def search(array, query)
