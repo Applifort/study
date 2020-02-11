@@ -18,6 +18,7 @@ class Exercise::ArraysTest < Minitest::Test
     assert Exercise::Arrays.search([], 900) == -1
     assert Exercise::Arrays.search([1, 4, 5, 7, 8, 9], 9) == 5
     assert Exercise::Arrays.search([1, 4, 5, 7, 8, 9], 1) == 0
+    assert Exercise::Arrays.search([1, 4, 5], 4) == 1
     assert Exercise::Arrays.search([1, 4, 5, 7, 8, 9], 6) == -1
     array = [
       38, 51, 55, 57, 96, 110, 129, 131, 144, 146, 154, 197, 202, 228, 245, 250, 253,
